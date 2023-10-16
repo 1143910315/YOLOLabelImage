@@ -9,10 +9,24 @@
             x:Key="Setting" />
     </ContentPage.Resources>
     <ScrollView>
-        <VerticalStackLayout
+        <HorizontalStackLayout
             Spacing="25"
             Padding="30,0"
-            VerticalOptions="Center">
+            VerticalOptions="Fill">
+            <VerticalStackLayout VerticalOptions="Center">
+                <Button Text="打开文件夹" Clicked="Button_Clicked"></Button>
+                <Button Text="设置保存文件夹" Clicked="Button_Clicked_1"></Button>
+                <Button Text="下一张图片"></Button>
+                <Button Text="上一张图片"></Button>
+                <Button Text="创建标签标注"></Button>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <Image
+                Source="dotnet_bot.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+            </VerticalStackLayout>
             <input:CheckBox Text="Hello World"/>
             <Image
                 Source="dotnet_bot.png"
@@ -40,7 +54,7 @@
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
 
-        </VerticalStackLayout>
+        </HorizontalStackLayout>
     </ScrollView>
 
 </ContentPage>
