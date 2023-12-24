@@ -1,60 +1,90 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<uranium:UraniumContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="YOLOLabelImage.MainPage"
+             x:DataType="viewModel:SettingViewModel"
              xmlns:viewModel="clr-namespace:YOLOLabelImage.ViewModel"
-             xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui">
-    <ContentPage.Resources>
-        <viewModel:SettingViewModel
-            x:Key="Setting" />
-    </ContentPage.Resources>
+             xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
+             xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+             xmlns:controls="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material">
+    <uranium:UraniumContentPage.Resources>
+        <viewModel:SettingViewModel x:Key="Setting" />
+    </uranium:UraniumContentPage.Resources>
     <ScrollView>
-        <HorizontalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Fill">
-            <VerticalStackLayout VerticalOptions="Center">
+
+        <!--<FlexLayout VerticalOptions="Fill" HorizontalOptions="Fill" Direction="Row">
+            <Rectangle WidthRequest="15" HeightRequest="1" />
+            <FlexLayout WidthRequest="100" Direction="Column" JustifyContent="SpaceAround">
                 <Button Text="打开文件夹" Clicked="Button_Clicked"></Button>
                 <Button Text="设置保存文件夹" Clicked="Button_Clicked_1"></Button>
                 <Button Text="下一张图片"></Button>
                 <Button Text="上一张图片"></Button>
                 <Button Text="创建标签标注"></Button>
+                <Rectangle WidthRequest="1" HeightRequest="1" />
+                <Rectangle WidthRequest="1" HeightRequest="1" />
+                <Rectangle WidthRequest="1" HeightRequest="1" />
+                <Rectangle WidthRequest="1" HeightRequest="1" />
+            </FlexLayout>
+            <FlexLayout>
+                <Rectangle WidthRequest="50" HeightRequest="50" Fill="Gray" />
+                <Button Text="?"></Button>
+            </FlexLayout>
+            
+        </FlexLayout>-->
+
+        <!--<HorizontalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Fill"
+            HorizontalOptions="Fill">
+
+            <VerticalStackLayout VerticalOptions="Center" Spacing="20">
+                <Button StyleClass="OutlinedButton" Text="打开文件夹" Clicked="Button_Clicked"></Button>
+                <Button StyleClass="OutlinedButton" Text="设置保存文件夹" Clicked="Button_Clicked_1"></Button>
+                <Button StyleClass="OutlinedButton" Text="下一张图片"></Button>
+                <Button StyleClass="OutlinedButton" Text="上一张图片"></Button>
+                <Button StyleClass="OutlinedButton" Text="创建标签标注"></Button>
             </VerticalStackLayout>
-            <VerticalStackLayout>
+            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
                 <Image
                 Source="dotnet_bot.png"
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
             </VerticalStackLayout>
-            <input:CheckBox Text="Hello World"/>
-            <Image
+            <VerticalStackLayout HorizontalOptions="End">
+                <controls:DataGrid x:Name="LabelDataGridView" ItemsSource="{Binding Source={StaticResource Setting}, Path=LabelList}" UseAutoColumns="True" Margin="30" />
+            </VerticalStackLayout>
+        </HorizontalStackLayout>-->
+        <Grid Margin="25" x:Name="GridView">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <VerticalStackLayout VerticalOptions="Center" Spacing="20" Grid.Row="0" Grid.Column="0">
+                <Button StyleClass="OutlinedButton" Text="打开文件夹" Clicked="Button_Clicked"></Button>
+                <Button StyleClass="OutlinedButton" Text="设置保存文件夹" Clicked="Button_Clicked_1"></Button>
+                <Button StyleClass="OutlinedButton" Text="下一张图片"></Button>
+                <Button StyleClass="OutlinedButton" Text="上一张图片"></Button>
+                <Button StyleClass="OutlinedButton" Text="创建标签标注"></Button>
+            </VerticalStackLayout>
+            <FlexLayout Grid.Row="0" Grid.Column="1" AlignItems="Stretch">
+                <Image
+                x:Name="DisplayImageView"
+                Aspect="AspectFit"
                 Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-        </HorizontalStackLayout>
+                FlexLayout.Grow="1"
+                FlexLayout.Shrink="1"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"/>
+            </FlexLayout>
+            <VerticalStackLayout Grid.Row="0" Grid.Column="2">
+                <controls:DataGrid x:Name="LabelDataGridView" ItemsSource="{Binding Source={StaticResource Setting}, Path=LabelList}" UseAutoColumns="True" Margin="30" />
+            </VerticalStackLayout>
+        </Grid>
     </ScrollView>
 
-</ContentPage>
+</uranium:UraniumContentPage>

@@ -1,5 +1,5 @@
-﻿using InputKit.Handlers;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using UraniumUI;
 
 namespace YOLOLabelImage {
     public static class MauiProgram {
@@ -10,10 +10,9 @@ namespace YOLOLabelImage {
                 .ConfigureFonts(fonts => {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                }).ConfigureMauiHandlers(handlers => {
-                    // Add following line:
-                    handlers.AddInputKitHandlers();
-                });
+                })
+                .UseUraniumUI()
+                .UseUraniumUIMaterial();
 
 #if DEBUG
             builder.Logging.AddDebug();
